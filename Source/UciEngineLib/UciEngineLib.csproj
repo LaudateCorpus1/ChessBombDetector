@@ -42,6 +42,7 @@
     <Compile Include="UciEnginePositionDef.cs" />
     <Compile Include="IUciEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UciFieldIdAttribute.cs" />
     <Compile Include="UciInfoEvent.cs" />
     <Compile Include="UciInfoEventField.cs" />
     <Compile Include="UciInfoEventFields\DepthField.cs" />

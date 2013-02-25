@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.UciInfoEventFields
 {
+    [UciFieldId("depth")]
     public class DepthField : UciInfoEventField
     {
         public int Depth { get; set; }
-
-        public override string Id
-        {
-            get { return "depth"; }
-        }
     }
 }
