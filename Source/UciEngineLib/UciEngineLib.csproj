@@ -46,6 +46,7 @@
     <Compile Include="UciInfoEventField.cs" />
     <Compile Include="UciInfoEventFields\DepthField.cs" />
     <Compile Include="UciInfoEventFields\MultiPvField.cs" />
+    <Compile Include="UciInfoEventFields\SelDepthField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
