@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBombDetector.UciInfoEventFields
+namespace ChessBombDetector.UciEventFields
 {
   [UciFieldId("seldepth")]
-  public class SelDepthField : UciInfoEventField
+  public class SelDepthField : UciEventField
   {
     public int SelDepth { get; set; }
   }

@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessBombDetector.UciInfoEventFields;
+using ChessBombDetector.UciEventFields;
 
 namespace ChessBombDetector
 {
-    public class UciInfoEvent
+    public class UciEvent
     {
 
-        private readonly IDictionary<Type, UciInfoEventField> _fields = new Dictionary<Type, UciInfoEventField>();
-
+        private readonly IDictionary<Type, UciEventField> _fields = new Dictionary<Type, UciEventField>();
         
-        public UciInfoEventField FindField<T>() where T : class
+        public UciEventField FindField<T>() where T : UciEventField
         {
-            UciInfoEventField result;
+            UciEventField result;
             return _fields.TryGetValue(typeof (T), out result) ? result : null;
         }
 
-        public UciInfoEventField GetField<T>() where T : Type
+        public UciEventField GetField<T>() where T : UciEventField
         {
             var result = FindField<T>();
             if (result == null)

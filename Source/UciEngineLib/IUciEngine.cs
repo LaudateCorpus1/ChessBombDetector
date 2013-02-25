@@ -8,7 +8,7 @@ namespace ChessBombDetector
 {
     public class UciInfoEventArgs : EventArgs
     {
-        public UciInfoEvent Data { get; set; }
+        public UciEvent Data { get; set; }
     }
     
     public interface IUciEngine
