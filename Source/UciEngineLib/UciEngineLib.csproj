@@ -43,11 +43,11 @@
     <Compile Include="IUciEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UciFieldIdAttribute.cs" />
-    <Compile Include="UciInfoEvent.cs" />
-    <Compile Include="UciInfoEventField.cs" />
-    <Compile Include="UciInfoEventFields\DepthField.cs" />
-    <Compile Include="UciInfoEventFields\MultiPvField.cs" />
-    <Compile Include="UciInfoEventFields\SelDepthField.cs" />
+    <Compile Include="UciEvent.cs" />
+    <Compile Include="UciEventField.cs" />
+    <Compile Include="UciEventFields\DepthField.cs" />
+    <Compile Include="UciEventFields\MultiPvField.cs" />
+    <Compile Include="UciEventFields\SelDepthField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
