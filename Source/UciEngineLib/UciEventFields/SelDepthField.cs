@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace ChessBombDetector.UciEventFields
 {
   [UciFieldId("seldepth")]
-  public class SelDepthField : UciEventField
+  class SelDepthField : SimpleField<int>
   {
-    public int SelDepth { get; set; }
   }
 }

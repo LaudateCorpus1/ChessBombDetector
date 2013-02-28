@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector
 {
-    public class UciInfoEventArgs : EventArgs
+    class UciInfoEventArgs : EventArgs
     {
         public UciEvent Data { get; set; }
     }
     
-    public interface IUciEngine
+    interface IUciEngine
     {
         void SetPosition(UciEnginePositionDef position, string[] moves);
         void SetOption(string name, string value);

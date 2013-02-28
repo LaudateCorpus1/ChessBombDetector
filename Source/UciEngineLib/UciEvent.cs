@@ -7,7 +7,7 @@ using ChessBombDetector.UciEventFields;
 
 namespace ChessBombDetector
 {
-    public class UciEvent
+    class UciEvent
     {
 
         private readonly IDictionary<Type, UciEventField> _fields = new Dictionary<Type, UciEventField>();

@@ -1,6 +1,6 @@
 ﻿namespace ChessBombDetector
 {
-    public abstract class UciEventField
+    abstract class UciEventField
     {
     }
 }

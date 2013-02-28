@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ChessBombDetector
 {
   [System.AttributeUsage(AttributeTargets.Class)]
-  public class UciFieldIdAttribute : Attribute
+  class UciFieldIdAttribute : Attribute
   {
     public string FieldId { get; private set; }
     

@@ -1,8 +1,12 @@
-﻿namespace ChessBombDetector.UciInfoEventFields
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ChessBombDetector.UciEventFields
 {
   [UciFieldId("multipv")]
-  public class MultiPvField : UciEventField
-    {
-        public int Rank { get; set; }
-    }
+  class MultiPvField : SimpleField<int>
+  {
+  }
 }

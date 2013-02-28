@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector
 {
-    public struct UciEnginePositionDef
+    struct UciEnginePositionDef
     {
         public bool StartPos { get; set; }
         public string Fen { get; set; }
