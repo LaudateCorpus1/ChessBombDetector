@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector
 {
-    class UciEvent
+    class UciEventData
     {
 
       private readonly IDictionary<string, UciEventField> _fields = new Dictionary<string, UciEventField>();

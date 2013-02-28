@@ -39,11 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfoUciEventData.cs" />
     <Compile Include="UciEnginePositionDef.cs" />
     <Compile Include="IUciEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UciFieldIdAttribute.cs" />
-    <Compile Include="UciEvent.cs" />
+    <Compile Include="UciEventData.cs" />
     <Compile Include="UciEventField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
