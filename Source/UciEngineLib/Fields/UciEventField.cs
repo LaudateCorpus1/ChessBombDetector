@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ChessBombDetector
+namespace ChessBombDetector.Fields
 {
     abstract class UciEventField
     {
