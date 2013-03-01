@@ -3,29 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector
 {
-    class UciEventData
+    class UciEventData<TFieldId> where TFieldId: struct
     {
 
-      private readonly IDictionary<string, UciEventField> _fields = new Dictionary<string, UciEventField>();
-        
-        protected UciEventField FindField(string id)
-        {
-            UciEventField result;
-            return _fields.TryGetValue(id, out result) ? result : null;
-        }
+      private static readonly FactoryRegistry<TFieldId, UciEventField> _fieldRegistry = new FactoryRegistry<TFieldId, UciEventField>();
 
-        protected UciEventField GetField(string id)
-        {
-            var result = FindField(id);
-            if (result == null)
-            {
-                // TODO: typed exception
-                throw new Exception(string.Format("Field {0} not found", id));
-            }
-            return result;
-        }
+      private readonly IDictionary<TFieldId, UciEventField> _fields = new Dictionary<TFieldId, UciEventField>();
+
+      protected static void RegisterField<TFieldClass>(TFieldId fieldId) where TFieldClass : UciEventField, new()
+      {
+        _fieldRegistry.Register<TFieldClass>(fieldId);
+      }
+
+      protected UciEventField FindField(TFieldId id)
+      {
+          UciEventField result;
+          return _fields.TryGetValue(id, out result) ? result : null;
+      }
+
+      protected UciEventField GetField(TFieldId id)
+      {
+          var result = FindField(id);
+          if (result == null)
+          {
+              // TODO: typed exception
+              throw new Exception(string.Format("Field {0} not found", id));
+          }
+          return result;
+      }
     }
 }

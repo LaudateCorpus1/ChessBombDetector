@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfoUciEventFieldId.cs" />
+    <Compile Include="Utils\FactoryRegistry.cs" />
     <Compile Include="InfoUciEventData.cs" />
     <Compile Include="UciEnginePositionDef.cs" />
     <Compile Include="IUciEngine.cs" />

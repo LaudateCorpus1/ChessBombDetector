@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector
 {
-  class InfoUciEventData : UciEventData
+  class InfoUciEventData : UciEventData<InfoUciEventFieldId>
   {
   }
 }
