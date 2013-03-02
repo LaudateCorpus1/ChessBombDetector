@@ -12,7 +12,8 @@ namespace ChessBombDetector
 
     private static void RegisterFields()
     {
-      RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Depth);
+      RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Depth,
+        (data, field) => ((InfoUciEventData) data)._depth = field);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.SelDepth);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Time);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Nodes);
@@ -34,5 +35,7 @@ namespace ChessBombDetector
     {
       RegisterFields();
     }
+
+      private IntegerUciEventField _depth;
   }
 }

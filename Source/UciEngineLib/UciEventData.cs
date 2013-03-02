@@ -15,7 +15,7 @@ namespace ChessBombDetector
 
       private readonly IDictionary<TFieldId, UciEventField> _fields = new Dictionary<TFieldId, UciEventField>();
 
-      protected static void RegisterField<TFieldClass>(TFieldId fieldId) where TFieldClass : UciEventField, new()
+      protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<UciEventData<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : UciEventField, new()
       {
         _fieldRegistry.Register<TFieldClass>(fieldId);
       }
