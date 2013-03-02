@@ -4,6 +4,6 @@ namespace ChessBombDetector.Fields
 {
     abstract class UciEventField
     {
-      protected abstract void ReadFromStream(StreamReader reader);
+        protected abstract void ReadFromStream(StringReader reader);
     }
 }

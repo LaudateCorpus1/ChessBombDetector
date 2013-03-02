@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Fields
 {
@@ -8,9 +9,9 @@ namespace ChessBombDetector.Fields
 
     public string Value { get; private set; }
 
-    protected override void ReadFromStream(StreamReader reader)
+    protected override void ReadFromStream(StringReader reader)
     {
-      throw new NotImplementedException();
+        Value = reader.ReadWord();
     }
   }
 }
