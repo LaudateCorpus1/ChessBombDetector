@@ -11,14 +11,19 @@ namespace ChessBombDetector.Utils
     {
         public static string ReadWord(this StringReader reader)
         {
-            string word = "";
+            StringWriter word = null;
             char c;
             do
             {
-                c = Convert.ToChar(reader.Read());
-                word += c;
+                int readRes = reader.Read();
+                if (readRes == -1)
+                    break;
+                word = new StringWriter();
+                c = Convert.ToChar(readRes);
+                if (c != ' ')
+                    word.Write(c);
             } while (c != ' ');
-            return word;
+            return (word != null) ? word.ToString() : null;
         }
     }
 }
