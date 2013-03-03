@@ -43,7 +43,6 @@
     <Compile Include="Fields\StringUciEventField.cs" />
     <Compile Include="InfoUciEventFieldId.cs" />
     <Compile Include="Fields\IntegerUciEventField.cs" />
-    <Compile Include="Utils\FactoryRegistry.cs" />
     <Compile Include="InfoUciEventData.cs" />
     <Compile Include="UciEnginePositionDef.cs" />
     <Compile Include="IUciEngine.cs" />
