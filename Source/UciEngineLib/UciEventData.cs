@@ -56,7 +56,9 @@ namespace ChessBombDetector
             string word = null;
             while ((word = reader.ReadWord()) != null)
             {
-                
+                TFieldId fieldId = EnumDescriptionToValueMapper<TFieldId>.GetValueByDescription(word);
+                UciEventField field = CreateField(fieldId);
+                _fields.Add(fieldId, field);
             }              
         }
     }

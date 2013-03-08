@@ -53,7 +53,9 @@
     <Compile Include="UciFieldIdAttribute.cs" />
     <Compile Include="UciEventData.cs" />
     <Compile Include="Fields\UciEventField.cs" />
+    <Compile Include="Utils\EnumDescriptionToValueMapper.cs" />
     <Compile Include="Utils\EnumExtension.cs" />
+    <Compile Include="Utils\EnumValueToDescriptionMapper.cs" />
     <Compile Include="Utils\StringReaderExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
