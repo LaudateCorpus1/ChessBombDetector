@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrLineEventField.cs" />
+    <Compile Include="Fields\ScoreEventField.cs" />
+    <Compile Include="Fields\VariationEventField.cs" />
     <Compile Include="Fields\WordUciEventField.cs" />
     <Compile Include="Fields\StringUciEventField.cs" />
     <Compile Include="InfoUciEventFieldId.cs" />

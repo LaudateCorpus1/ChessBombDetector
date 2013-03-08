@@ -17,9 +17,9 @@ namespace ChessBombDetector
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.SelDepth);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Time);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Nodes);
-      // RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Pv);
+      RegisterField<VariationEventField>(InfoUciEventFieldId.Pv);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.MultiPv);
-      // RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Score);
+      RegisterField<ScoreEventField>(InfoUciEventFieldId.Score);
       RegisterField<WordUciEventField>(InfoUciEventFieldId.CurrMove);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.CurrMoveNumber);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.HashFull);
@@ -27,8 +27,8 @@ namespace ChessBombDetector
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.TbHits);
       RegisterField<IntegerUciEventField>(InfoUciEventFieldId.CpuLoad);
       RegisterField<StringUciEventField>(InfoUciEventFieldId.String);
-      // RegisterField<IntegerUciEventField>(InfoUciEventFieldId.Refutation);
-      // RegisterField<IntegerUciEventField>(InfoUciEventFieldId.CurrLine);
+      RegisterField<VariationEventField>(InfoUciEventFieldId.Refutation);
+      RegisterField<CurrLineEventField>(InfoUciEventFieldId.CurrLine);
     }
 
     static InfoUciEventData()
