@@ -62,5 +62,8 @@ namespace ChessBombDetector.Events
     public StringEventField String { get; private set; }
     public VariationEventField Refutation { get; private set; }
     public CurrLineEventField CurrLine { get; private set; }
+
+    public InfoEvent(EventType type) : base(type) {}
+
   }
 }

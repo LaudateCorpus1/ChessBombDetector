@@ -45,6 +45,7 @@
     <Compile Include="EventFields\WordEventField.cs" />
     <Compile Include="EventFields\StringEventField.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventType.cs" />
     <Compile Include="Events\IdEvent.cs" />
     <Compile Include="Events\IdEventFieldId.cs" />
     <Compile Include="Events\InfoEventFieldId.cs" />

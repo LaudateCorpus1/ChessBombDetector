@@ -58,5 +58,7 @@ namespace ChessBombDetector.Events
                 _fields.Add(fieldId, field);
             }              
         }
+
+        public ComplexEvent(EventType type) : base(type) {}
     }
 }

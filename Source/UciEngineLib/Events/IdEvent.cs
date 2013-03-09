@@ -24,5 +24,7 @@ namespace ChessBombDetector.Events
 
         public StringEventField Name { get; private set; }
         public StringEventField Author { get; private set; }
+
+        public IdEvent(EventType type) : base(type) {}
     }
 }
