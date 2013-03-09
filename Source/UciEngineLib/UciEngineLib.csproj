@@ -44,6 +44,8 @@
     <Compile Include="EventFields\VariationEventField.cs" />
     <Compile Include="EventFields\WordUciEventField.cs" />
     <Compile Include="EventFields\StringUciEventField.cs" />
+    <Compile Include="Events\IdUciEventData.cs" />
+    <Compile Include="Events\IdUciEventFieldId.cs" />
     <Compile Include="Events\InfoUciEventFieldId.cs" />
     <Compile Include="EventFields\IntegerUciEventField.cs" />
     <Compile Include="Events\InfoUciEventData.cs" />
