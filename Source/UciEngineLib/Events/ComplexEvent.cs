@@ -6,7 +6,7 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
-    class ComplexEvent<TFieldId> where TFieldId : struct
+    class ComplexEvent<TFieldId>: Event where TFieldId : struct
     {
 
         private static readonly Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>>();
@@ -48,9 +48,9 @@ namespace ChessBombDetector.Events
             return result;
         }
 
-        protected void ReadFromStream(StringReader reader)
+        protected override void ReadFromStream(StringReader reader)
         {
-            string word = null;
+            string word;
             while ((word = reader.ReadWord()) != null)
             {
                 TFieldId fieldId = EnumDescriptionToValueMapper<TFieldId>.GetValueByDescription(word);
