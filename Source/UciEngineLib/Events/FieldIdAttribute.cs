@@ -3,11 +3,11 @@
 namespace ChessBombDetector.Events
 {
   [System.AttributeUsage(AttributeTargets.Class)]
-  class UciFieldIdAttribute : Attribute
+  class FieldIdAttribute : Attribute
   {
     public string FieldId { get; private set; }
     
-    public UciFieldIdAttribute(string fieldId)
+    public FieldIdAttribute(string fieldId)
     {
       FieldId = fieldId;
     }

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ChessBombDetector.EventFields
 {
-    class ScoreEventField : UciEventField
+    class ScoreEventField : EventField
     {
         protected override void ReadFromStream(StringReader reader)
         {

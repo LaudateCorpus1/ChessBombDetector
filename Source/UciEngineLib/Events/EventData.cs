@@ -9,16 +9,16 @@ namespace ChessBombDetector.Events
     class UciEventData<TFieldId> where TFieldId : struct
     {
 
-        private static readonly Dictionary<TFieldId, Func<UciEventData<TFieldId>, UciEventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<UciEventData<TFieldId>, UciEventField>>();
+        private static readonly Dictionary<TFieldId, Func<UciEventData<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<UciEventData<TFieldId>, EventField>>();
 
-        private readonly IDictionary<TFieldId, UciEventField> _fields = new Dictionary<TFieldId, UciEventField>();
+        private readonly IDictionary<TFieldId, EventField> _fields = new Dictionary<TFieldId, EventField>();
 
-        private UciEventField CreateField(TFieldId fieldId)
+        private EventField CreateField(TFieldId fieldId)
         {
             return _fieldFactoryRegistry[fieldId](this);
         }
 
-        protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<UciEventData<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : UciEventField, new()
+        protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<UciEventData<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : EventField, new()
         {
             _fieldFactoryRegistry.Add(fieldId,
                 obj =>
@@ -31,13 +31,13 @@ namespace ChessBombDetector.Events
             );
         }
 
-        protected UciEventField FindField(TFieldId id)
+        protected EventField FindField(TFieldId id)
         {
-            UciEventField result;
+            EventField result;
             return _fields.TryGetValue(id, out result) ? result : null;
         }
 
-        protected UciEventField GetField(TFieldId id)
+        protected EventField GetField(TFieldId id)
         {
             var result = FindField(id);
             if (result == null)
@@ -54,7 +54,7 @@ namespace ChessBombDetector.Events
             while ((word = reader.ReadWord()) != null)
             {
                 TFieldId fieldId = EnumDescriptionToValueMapper<TFieldId>.GetValueByDescription(word);
-                UciEventField field = CreateField(fieldId);
+                EventField field = CreateField(fieldId);
                 _fields.Add(fieldId, field);
             }              
         }
