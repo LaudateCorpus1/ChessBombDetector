@@ -8,12 +8,24 @@ namespace ChessBombDetector.Utils
 {
     static class EnumDescriptionToValueMapper<T> where T: struct
     {
-        private static readonly Dictionary<string, T> _descriptionToValueMapping = 
+        private static readonly Dictionary<string, T> _dictionary = 
             new Dictionary<string, T>();
+
+        static EnumDescriptionToValueMapper()
+        {
+            foreach (T value in Enum.GetValues(typeof(T)))
+            {
+                string description = value.GetDescription<T>();
+                if (description != null)
+                {
+                    _dictionary.Add(description, value);
+                }
+            }
+        }
 
         public static T GetValueByDescription(string description)
         {
-            throw new NotImplementedException();
+            return _dictionary[description];
         }
 
     }

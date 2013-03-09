@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,12 +10,24 @@ namespace ChessBombDetector.Utils
 {
     static class EnumValueToDescriptionMapper<T> where T: struct
     {
-        private static readonly Dictionary<string, T> _valueToDescriptionMapping =
-            new Dictionary<string, T>();
+        private static readonly Dictionary<T, string> _dictionary =
+            new Dictionary<T, string>();
 
+        static EnumValueToDescriptionMapper()
+        {
+            foreach (T value in Enum.GetValues(typeof(T)))
+            {
+                string description = value.GetDescription<T>();
+                if (description != null)
+                {
+                    _dictionary.Add(value, description);
+                }
+            }
+        }
+        
         public static string GetDescriptionByValue(T value)
         {
-            throw new NotImplementedException();
+            return _dictionary[value];
         }
     }
 }
