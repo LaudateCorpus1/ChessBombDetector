@@ -2,46 +2,46 @@
 
 namespace ChessBombDetector.Events
 {
-  class InfoEventData : UciEventData<InfoEventFieldId>
+  class InfoEvent : ComplexEvent<InfoEventFieldId>
   {
 
     private static void RegisterFields()
     {
         RegisterField<IntegerEventField>(InfoEventFieldId.Depth,
-          (data, field) => ((InfoEventData)data).Depth = field);
+          (data, field) => ((InfoEvent)data).Depth = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.SelDepth,
-          (data, field) => ((InfoEventData)data).SelDepth = field);
+          (data, field) => ((InfoEvent)data).SelDepth = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.Time,
-          (data, field) => ((InfoEventData)data).Time = field);
+          (data, field) => ((InfoEvent)data).Time = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.Nodes,
-          (data, field) => ((InfoEventData)data).Nodes = field);
+          (data, field) => ((InfoEvent)data).Nodes = field);
         RegisterField<VariationEventField>(InfoEventFieldId.Pv,
-          (data, field) => ((InfoEventData)data).Pv = field);
+          (data, field) => ((InfoEvent)data).Pv = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.MultiPv,
-          (data, field) => ((InfoEventData)data).MultiPv = field);
+          (data, field) => ((InfoEvent)data).MultiPv = field);
         RegisterField<ScoreEventField>(InfoEventFieldId.Score,
-          (data, field) => ((InfoEventData)data).Score = field);
+          (data, field) => ((InfoEvent)data).Score = field);
         RegisterField<WordEventField>(InfoEventFieldId.CurrMove,
-          (data, field) => ((InfoEventData)data).CurrMove = field);
+          (data, field) => ((InfoEvent)data).CurrMove = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.CurrMoveNumber,
-          (data, field) => ((InfoEventData)data).CurrMoveNumber = field);
+          (data, field) => ((InfoEvent)data).CurrMoveNumber = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.HashFull,
-          (data, field) => ((InfoEventData)data).HashFull = field);
+          (data, field) => ((InfoEvent)data).HashFull = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.Nps,
-          (data, field) => ((InfoEventData)data).Nps = field);
+          (data, field) => ((InfoEvent)data).Nps = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.TbHits,
-          (data, field) => ((InfoEventData)data).TbHits = field);
+          (data, field) => ((InfoEvent)data).TbHits = field);
         RegisterField<IntegerEventField>(InfoEventFieldId.CpuLoad,
-          (data, field) => ((InfoEventData)data).CpuLoad = field);
+          (data, field) => ((InfoEvent)data).CpuLoad = field);
         RegisterField<StringEventField>(InfoEventFieldId.String,
-          (data, field) => ((InfoEventData)data).String = field);
+          (data, field) => ((InfoEvent)data).String = field);
         RegisterField<VariationEventField>(InfoEventFieldId.Refutation,
-          (data, field) => ((InfoEventData)data).Refutation = field);
+          (data, field) => ((InfoEvent)data).Refutation = field);
         RegisterField<CurrLineEventField>(InfoEventFieldId.CurrLine,
-          (data, field) => ((InfoEventData)data).CurrLine = field);
+          (data, field) => ((InfoEvent)data).CurrLine = field);
     }
 
-    static InfoEventData()
+    static InfoEvent()
     {
       RegisterFields();
     }

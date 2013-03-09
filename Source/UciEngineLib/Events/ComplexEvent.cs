@@ -6,10 +6,10 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
-    class UciEventData<TFieldId> where TFieldId : struct
+    class ComplexEvent<TFieldId> where TFieldId : struct
     {
 
-        private static readonly Dictionary<TFieldId, Func<UciEventData<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<UciEventData<TFieldId>, EventField>>();
+        private static readonly Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>>();
 
         private readonly IDictionary<TFieldId, EventField> _fields = new Dictionary<TFieldId, EventField>();
 
@@ -18,7 +18,7 @@ namespace ChessBombDetector.Events
             return _fieldFactoryRegistry[fieldId](this);
         }
 
-        protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<UciEventData<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : EventField, new()
+        protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<ComplexEvent<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : EventField, new()
         {
             _fieldFactoryRegistry.Add(fieldId,
                 obj =>

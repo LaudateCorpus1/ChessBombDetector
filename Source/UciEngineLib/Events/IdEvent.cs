@@ -7,17 +7,17 @@ using ChessBombDetector.EventFields;
 
 namespace ChessBombDetector.Events
 {
-    internal class IdEventData : UciEventData<IdEventFieldId>
+    internal class IdEvent : ComplexEvent<IdEventFieldId>
     {
         private static void RegisterFields()
         {
             RegisterField<StringEventField>(IdEventFieldId.Name,
-                                               (data, field) => ((IdEventData) data).Name = field);
+                                               (data, field) => ((IdEvent) data).Name = field);
             RegisterField<StringEventField>(IdEventFieldId.Author,
-                                               (data, field) => ((IdEventData) data).Author = field);
+                                               (data, field) => ((IdEvent) data).Author = field);
         }
 
-        static IdEventData()
+        static IdEvent()
         {
             RegisterFields();
         }
