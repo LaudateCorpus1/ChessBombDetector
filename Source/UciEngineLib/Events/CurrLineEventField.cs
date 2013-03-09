@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChessBombDetector.Fields;
+using ChessBombDetector.EventFields;
 
-namespace ChessBombDetector
+namespace ChessBombDetector.Events
 {
     class CurrLineEventField : UciEventField
     {

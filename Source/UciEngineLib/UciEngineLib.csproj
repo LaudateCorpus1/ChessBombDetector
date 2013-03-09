@@ -39,20 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrLineEventField.cs" />
-    <Compile Include="Fields\ScoreEventField.cs" />
-    <Compile Include="Fields\VariationEventField.cs" />
-    <Compile Include="Fields\WordUciEventField.cs" />
-    <Compile Include="Fields\StringUciEventField.cs" />
-    <Compile Include="InfoUciEventFieldId.cs" />
-    <Compile Include="Fields\IntegerUciEventField.cs" />
-    <Compile Include="InfoUciEventData.cs" />
+    <Compile Include="Events\CurrLineEventField.cs" />
+    <Compile Include="EventFields\ScoreEventField.cs" />
+    <Compile Include="EventFields\VariationEventField.cs" />
+    <Compile Include="EventFields\WordUciEventField.cs" />
+    <Compile Include="EventFields\StringUciEventField.cs" />
+    <Compile Include="Events\InfoUciEventFieldId.cs" />
+    <Compile Include="EventFields\IntegerUciEventField.cs" />
+    <Compile Include="Events\InfoUciEventData.cs" />
     <Compile Include="UciEnginePositionDef.cs" />
     <Compile Include="IUciEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UciFieldIdAttribute.cs" />
-    <Compile Include="UciEventData.cs" />
-    <Compile Include="Fields\UciEventField.cs" />
+    <Compile Include="Events\UciFieldIdAttribute.cs" />
+    <Compile Include="Events\UciEventData.cs" />
+    <Compile Include="EventFields\UciEventField.cs" />
     <Compile Include="Utils\EnumDescriptionToValueMapper.cs" />
     <Compile Include="Utils\EnumExtension.cs" />
     <Compile Include="Utils\EnumValueToDescriptionMapper.cs" />
