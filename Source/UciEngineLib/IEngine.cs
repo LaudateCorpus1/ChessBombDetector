@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessBombDetector.Events;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector
 {
-    class UciInfoEventArgs : EventArgs
-    {
-        public InfoEvent Data { get; set; }
-    }
-    
     interface IEngine
     {
         void SetPosition(EnginePositionDef position, string[] moves);
@@ -19,6 +15,13 @@ namespace ChessBombDetector
         void Go();
         void Stop();
         void Quit();
-        event EventHandler<UciInfoEventArgs> InfoEvent;
+        event EventHandler<EventArgs<IdEvent>> IdEvent;
+        event EventHandler<EventArgs<UciOkEvent>> UciOkEvent;
+        event EventHandler<EventArgs<ReadyOkEvent>> ReadyOkEvent;
+        event EventHandler<EventArgs<BestMoveEvent>> BestMoveEvent;
+        event EventHandler<EventArgs<CopyProtectionEvent>> CopyProtectionEvent;
+        event EventHandler<EventArgs<RegistrationEvent>> RegistrationEvent;
+        event EventHandler<EventArgs<InfoEvent>> InfoEvent;
+        event EventHandler<EventArgs<OptionEvent>> OptionEvent;
     }
 }

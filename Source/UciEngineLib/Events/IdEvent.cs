@@ -7,13 +7,13 @@ using ChessBombDetector.EventFields;
 
 namespace ChessBombDetector.Events
 {
-    internal class IdEvent : ComplexEvent<IdEventFieldId>
+    internal class IdEvent : ComplexEvent<IdEventFieldType>
     {
         private static void RegisterFields()
         {
-            RegisterField<StringEventField>(IdEventFieldId.Name,
+            RegisterField<StringEventField>(IdEventFieldType.Name,
                                                (data, field) => ((IdEvent) data).Name = field);
-            RegisterField<StringEventField>(IdEventFieldId.Author,
+            RegisterField<StringEventField>(IdEventFieldType.Author,
                                                (data, field) => ((IdEvent) data).Author = field);
         }
 

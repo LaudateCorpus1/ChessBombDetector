@@ -2,7 +2,7 @@
 
 namespace ChessBombDetector.Events
 {
-    enum InfoEventFieldId
+    enum InfoEventFieldType
     {
         [Description("depth")]
         Depth,

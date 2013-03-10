@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
@@ -43,6 +44,14 @@ namespace ChessBombDetector.Events
         protected Event(EventType type)
         {
             _type = type;
+        }
+
+        public static Event CreateFromStream(StringReader reader)
+        {
+            EventType eventType = EnumDescriptionToValueMapper<EventType>.GetValueByDescription(reader.ReadWord());
+            Event res = CreateEvent(eventType);
+            res.ReadFromStream(reader);
+            return res;
         }
         
     }
