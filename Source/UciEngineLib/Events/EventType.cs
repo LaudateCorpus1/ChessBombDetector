@@ -12,7 +12,7 @@ namespace ChessBombDetector.Events
         [Description("id")]
         Id,
 
-        [Description("ok")]
+        [Description("uciok")]
         UciOk,
 
         [Description("readyok")]

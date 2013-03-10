@@ -21,9 +21,16 @@ namespace ChessBombDetector.Events
 
         static Event()
         {
-            _factoryRegistry.Add(EventType.Id, type => new IdEvent(EventType.Id));            
+            _factoryRegistry.Add(EventType.Id, type => new IdEvent(EventType.Id));
+            _factoryRegistry.Add(EventType.UciOk, type => new Event(EventType.UciOk));
+            _factoryRegistry.Add(EventType.ReadyOk, type => new Event(EventType.ReadyOk));
+            _factoryRegistry.Add(EventType.BestMove, type => new Event(EventType.BestMove));
+            _factoryRegistry.Add(EventType.CopyProtection, type => new Event(EventType.CopyProtection));
+            _factoryRegistry.Add(EventType.Registration, type => new Event(EventType.Registration));
+            _factoryRegistry.Add(EventType.Info, type => new InfoEvent(EventType.Info));
+            _factoryRegistry.Add(EventType.Option, type => new Event(EventType.Option));
         }
-        
+
         protected virtual void ReadFromStream(StringReader reader)
         {
         }
