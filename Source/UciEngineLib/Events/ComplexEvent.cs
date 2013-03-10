@@ -6,7 +6,7 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
-    class ComplexEvent<TFieldId>: Event where TFieldId : struct
+    public class ComplexEvent<TFieldId>: Event where TFieldId : struct
     {
 
         private static readonly Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>>();

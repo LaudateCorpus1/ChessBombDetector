@@ -3,7 +3,7 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.EventFields
 {
-  class IntegerEventField: EventField
+    public class IntegerEventField: EventField
   {
     public int Value { get; private set; }
 

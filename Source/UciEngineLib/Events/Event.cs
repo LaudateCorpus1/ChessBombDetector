@@ -8,7 +8,7 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
-    abstract class Event
+    public abstract class Event
     {
         private static Dictionary<EventType, Func<Event>> _factoryRegistry = 
                 new Dictionary<EventType, Func<Event>>();

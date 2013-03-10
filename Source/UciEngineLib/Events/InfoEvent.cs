@@ -2,7 +2,7 @@
 
 namespace ChessBombDetector.Events
 {
-  class InfoEvent : ComplexEvent<InfoEventFieldType>
+    public class InfoEvent : ComplexEvent<InfoEventFieldType>
   {
 
     private static void RegisterFields()

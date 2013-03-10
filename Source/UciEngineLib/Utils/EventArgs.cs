@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Utils
 {
-    class EventArgs<T>
+    public class EventArgs<T>
     {
         public T Data { get; set; }
     }

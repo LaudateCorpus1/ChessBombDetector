@@ -3,7 +3,7 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.EventFields
 {
-  class WordEventField : EventField
+    public class WordEventField : EventField
   {
 
     public string Value { get; private set; }

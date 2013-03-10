@@ -2,7 +2,7 @@
 
 namespace ChessBombDetector.Events
 {
-    enum OptionEventFieldType
+    public enum OptionEventFieldType
     {
         [Description("name")]
         Name,

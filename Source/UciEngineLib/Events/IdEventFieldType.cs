@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ChessBombDetector.Events
 {
-    enum IdEventFieldType
+    public enum IdEventFieldType
     {
         [Description("name")]
         Name,

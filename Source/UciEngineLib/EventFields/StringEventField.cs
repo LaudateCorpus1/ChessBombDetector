@@ -2,7 +2,7 @@
 
 namespace ChessBombDetector.EventFields
 {
-  class StringEventField : EventField
+    public class StringEventField : EventField
   {
 
     public string Value { get; private set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    class ReadyOkEvent: Event
+    public class ReadyOkEvent: Event
     {
         public ReadyOkEvent() : base(EventType.ReadyOk)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    class OptionEvent: ComplexEvent<OptionEventFieldType>
+    public class OptionEvent: ComplexEvent<OptionEventFieldType>
     {
         public OptionEvent() : base(EventType.Option)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    class CopyProtectionEvent: Event
+    public class CopyProtectionEvent: Event
     {
         public CopyProtectionEvent() : base(EventType.CopyProtection)
         {

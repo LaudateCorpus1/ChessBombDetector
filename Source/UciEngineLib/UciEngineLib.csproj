@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine.cs" />
     <Compile Include="EventFields\CurrLineEventField.cs" />
     <Compile Include="Events\ReadyOkEvent.cs" />
     <Compile Include="Events\UciOkEvent.cs" />

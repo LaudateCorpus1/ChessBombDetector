@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    enum EventType
+    public enum EventType
     {
         [Description("id")]
         Id,

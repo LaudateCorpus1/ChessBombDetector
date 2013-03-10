@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    class BestMoveEvent: Event
+    public class BestMoveEvent: Event
     {
         public BestMoveEvent() : base(EventType.BestMove)
         {

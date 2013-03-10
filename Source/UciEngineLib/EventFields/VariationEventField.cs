@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ChessBombDetector.EventFields
 {
-    class VariationEventField : EventField
+    public class VariationEventField : EventField
     {
         protected override void ReadFromStream(StringReader reader)
         {

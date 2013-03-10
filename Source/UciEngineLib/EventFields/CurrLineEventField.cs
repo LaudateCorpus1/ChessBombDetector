@@ -4,7 +4,7 @@ using ChessBombDetector.EventFields;
 
 namespace ChessBombDetector.Events
 {
-    class CurrLineEventField : EventField
+    public class CurrLineEventField : EventField
     {
         protected override void ReadFromStream(StringReader reader)
         {

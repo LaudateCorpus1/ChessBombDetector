@@ -7,7 +7,7 @@ using ChessBombDetector.EventFields;
 
 namespace ChessBombDetector.Events
 {
-    internal class IdEvent : ComplexEvent<IdEventFieldType>
+    public class IdEvent : ComplexEvent<IdEventFieldType>
     {
         private static void RegisterFields()
         {
