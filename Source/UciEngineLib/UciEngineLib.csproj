@@ -40,10 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventFields\CurrLineEventField.cs" />
+    <Compile Include="Events\ReadyOkEvent.cs" />
+    <Compile Include="Events\UciOkEvent.cs" />
+    <Compile Include="Events\OptionEventFieldType.cs" />
     <Compile Include="EventFields\ScoreEventField.cs" />
     <Compile Include="EventFields\VariationEventField.cs" />
     <Compile Include="EventFields\WordEventField.cs" />
     <Compile Include="EventFields\StringEventField.cs" />
+    <Compile Include="Events\BestMoveEvent.cs" />
+    <Compile Include="Events\CopyProtectionEvent.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\EventType.cs" />
     <Compile Include="Events\IdEvent.cs" />
@@ -52,6 +57,8 @@
     <Compile Include="EventFields\IntegerEventField.cs" />
     <Compile Include="Events\InfoEvent.cs" />
     <Compile Include="EnginePositionDef.cs" />
+    <Compile Include="Events\OptionEvent.cs" />
+    <Compile Include="Events\RegistrationEvent.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\ComplexEvent.cs" />
