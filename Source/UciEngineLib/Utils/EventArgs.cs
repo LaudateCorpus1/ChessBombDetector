@@ -8,6 +8,18 @@ namespace ChessBombDetector.Utils
 {
     public class EventArgs<T>
     {
-        public T Data { get; set; }
+        private readonly T _data;
+
+        public T Data { get { return _data;  } }
+
+        public EventArgs(T data)
+        {
+            _data = data;
+        }
+
+        public static implicit operator EventArgs<T>(T data)
+        {
+            return new EventArgs<T>(data);
+        }
     }
 }

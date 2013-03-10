@@ -10,17 +10,62 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector
 {
-    public class Engine: IEngine
+    public class Engine: IEngine, IDisposable
     {
         
         private readonly StreamReader _reader;
 
         private readonly StreamWriter _writer;
 
+        private Task _eventProcessorTask;
+
         public Engine(StreamReader reader, StreamWriter writer)
         {
             _reader = reader;
             _writer = writer;
+            _eventProcessorTask = new Task(ProcessEvents);
+        }
+
+        public void Run()
+        {
+            _eventProcessorTask.Start();
+        }
+
+        private void ProcessEvents()
+        {
+            string line;
+            while ((line = _reader.ReadLine()) != null)
+            {
+                Event ev = Event.CreateFromStream(new StringReader(line));
+                switch (ev.Type)
+                {
+                        case EventType.Id: 
+                            IdEvent.Invoke(this, (IdEvent) ev);
+                            break;
+                        case EventType.UciOk:
+                            UciOkEvent.Invoke(this, (UciOkEvent) ev);
+                            break;
+                        case EventType.ReadyOk:
+                            ReadyOkEvent.Invoke(this, (ReadyOkEvent) ev);
+                            break;
+                        case EventType.BestMove:
+                            BestMoveEvent.Invoke(this, (BestMoveEvent) ev);
+                            break;
+                        case EventType.CopyProtection:
+                            CopyProtectionEvent.Invoke(this, (CopyProtectionEvent) ev);
+                            break;
+                        case EventType.Registration:
+                            RegistrationEvent.Invoke(this, (RegistrationEvent) ev);
+                            break;
+                        case EventType.Info:
+                            InfoEvent.Invoke(this, (InfoEvent) ev);
+                            break;
+                        case EventType.Option:
+                            OptionEvent.Invoke(this, (OptionEvent) ev);
+                            break;
+                }
+            }
+            
         }
 
         public void SetPosition(EnginePositionDef position, string[] moves)
@@ -30,22 +75,22 @@ namespace ChessBombDetector
 
         public void SetOption(string name, string value)
         {
-            throw new NotImplementedException();
+            _writer.WriteLine("go");
         }
 
         public void Go()
         {
-            throw new NotImplementedException();
+            _writer.WriteLine("go");
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            _writer.WriteLine("stop");
         }
 
         public void Quit()
         {
-            throw new NotImplementedException();
+            _writer.WriteLine("quit");
         }
 
         public event EventHandler<EventArgs<IdEvent>> IdEvent;
@@ -57,5 +102,9 @@ namespace ChessBombDetector
         public event EventHandler<EventArgs<InfoEvent>> InfoEvent;
         public event EventHandler<EventArgs<OptionEvent>> OptionEvent;
 
+        public void Dispose()
+        {
+            _eventProcessorTask.Wait();
+        }
     }
 }
