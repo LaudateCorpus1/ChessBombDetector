@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using ChessBombDetector.EventFields;
 
-namespace ChessBombDetector.Events
+namespace ChessBombDetector.EventFields
 {
     public class CurrLineEventField : EventField
     {

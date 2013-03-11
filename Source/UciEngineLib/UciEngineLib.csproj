@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine.cs" />
+    <Compile Include="EngineEventDispatcher.cs" />
+    <Compile Include="EngineEventParser.cs" />
     <Compile Include="EventFields\CurrLineEventField.cs" />
     <Compile Include="Events\ReadyOkEvent.cs" />
     <Compile Include="Events\UciOkEvent.cs" />

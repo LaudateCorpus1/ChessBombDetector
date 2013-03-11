@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,47 +20,27 @@ namespace ChessBombDetector
 
     private readonly Task _eventProcessorTask;
 
-    private static Dictionary<EventType, Func<Event>> _eventFactoryRegistry =
-            new Dictionary<EventType, Func<Event>>();
+    private static EngineEventParser _eventParser = new EngineEventParser();
 
-    private static Dictionary<EventType, Action<Engine, Event>> _eventHandlerRegistry =
-            new Dictionary<EventType, Action<Engine, Event>>();
+    private static EngineEventDispatcher _eventDispatcher =
+            new EngineEventDispatcher();
 
-    private static Event CreateEvent(EventType type)
+    private static void RegisterEventType<TEventType>(EventType eventType, Action<object, TEventType> eventHandler) where TEventType : Event, new()
     {
-      return _eventFactoryRegistry[type]();
-    }
-
-    private void HandleEvent(Event ev)
-    {
-      _eventHandlerRegistry[ev.Type](this, ev);
-    }
-
-    private Event ParseEvent(string line)
-    {
-      StringReader stringReader = new StringReader(line);
-      EventType eventType = EnumDescriptionToValueMapper<EventType>.GetValueByDescription(stringReader.ReadWord());
-      Event ev = CreateEvent(eventType);
-      ev.ReadFromStream(stringReader);
-      return ev;
-    }
-
-    private static void RegisterEventType<TEventType>(EventType eventType, Action<Engine, TEventType> eventHandler) where TEventType : Event, new()
-    {
-      _eventFactoryRegistry.Add(eventType, () => new TEventType());
-      _eventHandlerRegistry.Add(eventType, (engine, ev) => eventHandler(engine, (TEventType) ev));
+      _eventParser.RegisterEventType<TEventType>(eventType);
+      _eventDispatcher.RegisterEventType(eventType, eventHandler);
     }
 
     static Engine()
     {
-      RegisterEventType<IdEvent>(EventType.Id, (engine, ev) => engine.IdEvent(engine, ev));
-      RegisterEventType<UciOkEvent>(EventType.UciOk, (engine, ev) => engine.UciOkEvent(engine, ev));
-      RegisterEventType<ReadyOkEvent>(EventType.ReadyOk, (engine, ev) => engine.ReadyOkEvent(engine, ev));
-      RegisterEventType<BestMoveEvent>(EventType.BestMove, (engine, ev) => engine.BestMoveEvent(engine, ev));
-      RegisterEventType<CopyProtectionEvent>(EventType.CopyProtection, (engine, ev) => engine.CopyProtectionEvent(engine, ev));
-      RegisterEventType<RegistrationEvent>(EventType.Registration, (engine, ev) => engine.RegistrationEvent(engine, ev));
-      RegisterEventType<InfoEvent>(EventType.Info, (engine, ev) => engine.InfoEvent(engine, ev));
-      RegisterEventType<OptionEvent>(EventType.Option, (engine, ev) => engine.OptionEvent(engine, ev));
+      RegisterEventType<IdEvent>(EventType.Id, (sender, ev) => ((Engine)sender).IdEvent(sender, ev));
+      RegisterEventType<UciOkEvent>(EventType.UciOk, (sender, ev) => ((Engine)sender).UciOkEvent(sender, ev));
+      RegisterEventType<ReadyOkEvent>(EventType.ReadyOk, (sender, ev) => ((Engine)sender).ReadyOkEvent(sender, ev));
+      RegisterEventType<BestMoveEvent>(EventType.BestMove, (sender, ev) => ((Engine)sender).BestMoveEvent(sender, ev));
+      RegisterEventType<CopyProtectionEvent>(EventType.CopyProtection, (sender, ev) => ((Engine)sender).CopyProtectionEvent(sender, ev));
+      RegisterEventType<RegistrationEvent>(EventType.Registration, (sender, ev) => ((Engine)sender).RegistrationEvent(sender, ev));
+      RegisterEventType<InfoEvent>(EventType.Info, (sender, ev) => ((Engine)sender).InfoEvent(sender, ev));
+      RegisterEventType<OptionEvent>(EventType.Option, (sender, ev) => ((Engine)sender).OptionEvent(sender, ev));
     }
 
     public Engine(StreamReader reader, StreamWriter writer)
@@ -79,7 +60,7 @@ namespace ChessBombDetector
       string line;
       while ((line = _reader.ReadLine()) != null)
       {
-        HandleEvent(ParseEvent(line));
+        _eventDispatcher.HandleEvent(this, _eventParser.ParseEvent(line));
       }
 
     }
