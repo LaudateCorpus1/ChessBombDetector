@@ -19,22 +19,35 @@ namespace ChessBombDetector
 
     private readonly Task _eventProcessorTask;
 
-    private static Dictionary<EventType, Action<Engine, StringReader>> _eventHandlerRegistry =
-            new Dictionary<EventType, Action<Engine, StringReader>>();
+    private static Dictionary<EventType, Func<Event>> _eventFactoryRegistry =
+            new Dictionary<EventType, Func<Event>>();
 
-    private void ParseAndHandleEvent(EventType type, StringReader reader)
+    private static Dictionary<EventType, Action<Engine, Event>> _eventHandlerRegistry =
+            new Dictionary<EventType, Action<Engine, Event>>();
+
+    private static Event CreateEvent(EventType type)
     {
-      _eventHandlerRegistry[type](this, reader);
+      return _eventFactoryRegistry[type]();
+    }
+
+    private void HandleEvent(Event ev)
+    {
+      _eventHandlerRegistry[ev.Type](this, ev);
+    }
+
+    private Event ParseEvent(string line)
+    {
+      StringReader stringReader = new StringReader(line);
+      EventType eventType = EnumDescriptionToValueMapper<EventType>.GetValueByDescription(stringReader.ReadWord());
+      Event ev = CreateEvent(eventType);
+      ev.ReadFromStream(stringReader);
+      return ev;
     }
 
     private static void RegisterEventType<TEventType>(EventType eventType, Action<Engine, TEventType> eventHandler) where TEventType : Event, new()
     {
-      _eventHandlerRegistry.Add(eventType, (engine, reader) =>
-        {
-          TEventType ev = new TEventType();
-          ev.ReadFromStream(reader);
-          eventHandler(engine, ev);
-        });
+      _eventFactoryRegistry.Add(eventType, () => new TEventType());
+      _eventHandlerRegistry.Add(eventType, (engine, ev) => eventHandler(engine, (TEventType) ev));
     }
 
     static Engine()
@@ -66,9 +79,7 @@ namespace ChessBombDetector
       string line;
       while ((line = _reader.ReadLine()) != null)
       {
-        StringReader stringReader = new StringReader(line);
-        EventType eventType = EnumDescriptionToValueMapper<EventType>.GetValueByDescription(stringReader.ReadWord());
-        ParseAndHandleEvent(eventType, stringReader);
+        HandleEvent(ParseEvent(line));
       }
 
     }
