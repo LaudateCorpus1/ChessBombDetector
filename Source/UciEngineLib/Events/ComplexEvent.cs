@@ -6,19 +6,19 @@ using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.Events
 {
-  public class ComplexEvent<TFieldId> : Event where TFieldId : struct
+  public class ComplexEvent<TFieldType> : Event where TFieldType : struct
   {
 
-    private static readonly Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldId, Func<ComplexEvent<TFieldId>, EventField>>();
+    private static readonly Dictionary<TFieldType, Func<ComplexEvent<TFieldType>, EventField>> _fieldFactoryRegistry = new Dictionary<TFieldType, Func<ComplexEvent<TFieldType>, EventField>>();
 
-    private readonly IDictionary<TFieldId, EventField> _fields = new Dictionary<TFieldId, EventField>();
+    private readonly IDictionary<TFieldType, EventField> _fields = new Dictionary<TFieldType, EventField>();
 
-    private EventField CreateField(TFieldId fieldId)
+    private EventField CreateField(TFieldType fieldId)
     {
       return _fieldFactoryRegistry[fieldId](this);
     }
 
-    protected static void RegisterField<TFieldClass>(TFieldId fieldId, Action<ComplexEvent<TFieldId>, TFieldClass> fieldSetter = null) where TFieldClass : EventField, new()
+    protected static void RegisterField<TFieldClass>(TFieldType fieldId, Action<ComplexEvent<TFieldType>, TFieldClass> fieldSetter = null) where TFieldClass : EventField, new()
     {
       _fieldFactoryRegistry.Add(fieldId,
           obj =>
@@ -31,13 +31,13 @@ namespace ChessBombDetector.Events
       );
     }
 
-    protected EventField FindField(TFieldId id)
+    protected EventField FindField(TFieldType id)
     {
       EventField result;
       return _fields.TryGetValue(id, out result) ? result : null;
     }
 
-    protected EventField GetField(TFieldId id)
+    protected EventField GetField(TFieldType id)
     {
       var result = FindField(id);
       if (result == null)
@@ -53,7 +53,7 @@ namespace ChessBombDetector.Events
       string word;
       while ((word = reader.ReadWord()) != null)
       {
-        TFieldId fieldId = EnumDescriptionToValueMapper<TFieldId>.GetValueByDescription(word);
+        TFieldType fieldId = EnumDescriptionToValueMapper<TFieldType>.GetValueByDescription(word);
         EventField field = CreateField(fieldId);
         _fields.Add(fieldId, field);
       }
