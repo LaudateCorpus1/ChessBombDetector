@@ -18,7 +18,8 @@ namespace ChessBombDetector.Utils
                 int readRes = reader.Read();
                 if (readRes == -1)
                     break;
-                word = new StringWriter();
+                if (word == null)
+                  word = new StringWriter();
                 c = Convert.ToChar(readRes);
                 if (c != ' ')
                     word.Write(c);

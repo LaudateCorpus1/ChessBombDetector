@@ -4,6 +4,6 @@ namespace ChessBombDetector.EventFields
 {
     public abstract class EventField
     {
-        protected abstract void ReadFromStream(StringReader reader);
+        public abstract void ReadFromStream(StringReader reader);
     }
 }

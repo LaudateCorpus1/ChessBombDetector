@@ -5,7 +5,7 @@ namespace ChessBombDetector.EventFields
 {
     public class ScoreEventField : EventField
     {
-        protected override void ReadFromStream(StringReader reader)
+        public override void ReadFromStream(StringReader reader)
         {
             throw new NotImplementedException();
         }

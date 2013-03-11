@@ -31,13 +31,13 @@ namespace ChessBombDetector.Events
       );
     }
 
-    protected EventField FindField(TFieldType id)
+    public EventField FindField(TFieldType id)
     {
       EventField result;
       return _fields.TryGetValue(id, out result) ? result : null;
     }
 
-    protected EventField GetField(TFieldType id)
+    public EventField GetField(TFieldType id)
     {
       var result = FindField(id);
       if (result == null)
@@ -48,6 +48,11 @@ namespace ChessBombDetector.Events
       return result;
     }
 
+    public IEnumerable<EventField> Fields()
+    {
+      return _fields.Values;
+    }
+
     public override void ReadFromStream(StringReader reader)
     {
       string word;
@@ -55,6 +60,7 @@ namespace ChessBombDetector.Events
       {
         TFieldType fieldId = EnumDescriptionToValueMapper<TFieldType>.GetValueByDescription(word);
         EventField field = CreateField(fieldId);
+        field.ReadFromStream(reader);
         _fields.Add(fieldId, field);
       }
     }

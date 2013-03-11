@@ -8,7 +8,7 @@ namespace ChessBombDetector.EventFields
 
     public string Value { get; private set; }
 
-    protected override void ReadFromStream(StringReader reader)
+    public override void ReadFromStream(StringReader reader)
     {
         Value = reader.ReadWord();
     }
