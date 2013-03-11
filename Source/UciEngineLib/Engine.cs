@@ -70,7 +70,8 @@ namespace ChessBombDetector
 
         public void SetPosition(EnginePositionDef position, string[] moves)
         {
-            throw new NotImplementedException();
+          string movesStr = moves.Length > 0 ? String.Format("moves {0}", String.Join(" ", moves)) : "";
+          _writer.WriteLine(String.Join(" ", "position", position, movesStr));
         }
 
         public void SetOption(string name, string value)

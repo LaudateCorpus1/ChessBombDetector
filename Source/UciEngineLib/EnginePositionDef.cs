@@ -10,6 +10,11 @@ namespace ChessBombDetector
     {
         public bool StartPos { get; set; }
         public string Fen { get; set; }
+
+        public override string ToString()
+        {
+          return StartPos ? "startpos" : String.Format("fen {0}", Fen);
+        }
     }
 
 }
