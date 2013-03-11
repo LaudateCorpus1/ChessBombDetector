@@ -17,9 +17,37 @@ namespace ChessBombDetector
 
         private readonly StreamWriter _writer;
 
-        private Task _eventProcessorTask;
+        private readonly Task _eventProcessorTask;
 
-        public Engine(StreamReader reader, StreamWriter writer)
+        private static Dictionary<EventType, Func<Event>> _eventFactoryRegistry =
+                new Dictionary<EventType, Func<Event>>();
+
+        private static Event CreateEvent(EventType type)
+        {
+          return _eventFactoryRegistry[type]();
+        }
+
+      static Engine()
+      {
+        _eventFactoryRegistry.Add(EventType.Id, () => new IdEvent());
+        _eventFactoryRegistry.Add(EventType.UciOk, () => new UciOkEvent());
+        _eventFactoryRegistry.Add(EventType.ReadyOk, () => new ReadyOkEvent());
+        _eventFactoryRegistry.Add(EventType.BestMove, () => new BestMoveEvent());
+        _eventFactoryRegistry.Add(EventType.CopyProtection, () => new CopyProtectionEvent());
+        _eventFactoryRegistry.Add(EventType.Registration, () => new RegistrationEvent());
+        _eventFactoryRegistry.Add(EventType.Info, () => new InfoEvent());
+        _eventFactoryRegistry.Add(EventType.Option, () => new OptionEvent());
+      }
+
+      public static Event ParseEvent(StringReader reader)
+      {
+        EventType eventType = EnumDescriptionToValueMapper<EventType>.GetValueByDescription(reader.ReadWord());
+        Event res = CreateEvent(eventType);
+        res.ReadFromStream(reader);
+        return res;
+      }
+
+      public Engine(StreamReader reader, StreamWriter writer)
         {
             _reader = reader;
             _writer = writer;
@@ -36,7 +64,7 @@ namespace ChessBombDetector
             string line;
             while ((line = _reader.ReadLine()) != null)
             {
-                Event ev = Event.CreateFromStream(new StringReader(line));
+                Event ev = ParseEvent(new StringReader(line));
                 switch (ev.Type)
                 {
                         case EventType.Id: 
