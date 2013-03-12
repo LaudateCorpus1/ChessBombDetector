@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    public class RegistrationEvent: Event
+  public class RegistrationEvent : Event
+  {
+    public RegistrationEvent()
+      : base(EventType.Registration)
     {
-        public RegistrationEvent() : base(EventType.Registration)
-        {
-        }
     }
+  }
 }

@@ -7,24 +7,24 @@ using ChessBombDetector.EventFields;
 
 namespace ChessBombDetector.Events
 {
-    public class IdEvent : ComplexEvent<IdEventFieldType>
+  public class IdEvent : ComplexEvent<IdEventFieldType>
+  {
+    private static void RegisterFields()
     {
-        private static void RegisterFields()
-        {
-            RegisterField<StringEventField>(IdEventFieldType.Name,
-                                               (data, field) => ((IdEvent) data).Name = field);
-            RegisterField<StringEventField>(IdEventFieldType.Author,
-                                               (data, field) => ((IdEvent) data).Author = field);
-        }
-
-        static IdEvent()
-        {
-            RegisterFields();
-        }
-
-        public StringEventField Name { get; private set; }
-        public StringEventField Author { get; private set; }
-
-        public IdEvent() : base(EventType.Id) {}
+      RegisterField<StringEventField>(IdEventFieldType.Name,
+                                         (data, field) => ((IdEvent)data).Name = field);
+      RegisterField<StringEventField>(IdEventFieldType.Author,
+                                         (data, field) => ((IdEvent)data).Author = field);
     }
+
+    static IdEvent()
+    {
+      RegisterFields();
+    }
+
+    public StringEventField Name { get; private set; }
+    public StringEventField Author { get; private set; }
+
+    public IdEvent() : base(EventType.Id) { }
+  }
 }

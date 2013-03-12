@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChessBombDetector.Events
 {
-    public class ReadyOkEvent: Event
+  public class ReadyOkEvent : Event
+  {
+    public ReadyOkEvent()
+      : base(EventType.ReadyOk)
     {
-        public ReadyOkEvent() : base(EventType.ReadyOk)
-        {
-        }
     }
+  }
 }

@@ -1,9 +1,10 @@
 ﻿namespace ChessBombDetector.Events
 {
-    public class UciOkEvent: Event
+  public class UciOkEvent : Event
+  {
+    public UciOkEvent()
+      : base(EventType.UciOk)
     {
-        public UciOkEvent() : base(EventType.UciOk)
-        {
-        }
     }
+  }
 }
