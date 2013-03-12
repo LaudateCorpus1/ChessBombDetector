@@ -1,13 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.EventFields
 {
-    public class VariationEventField : EventField
+  public class VariationEventField : EventField
+  {
+    public String[] Moves { get; private set; }
+
+    public override void ReadFromStream(StringReader reader)
     {
-        public override void ReadFromStream(StringReader reader)
-        {
-            throw new NotImplementedException();
-        }
+      List<string> words = new List<string>();
+      string word;
+      while ((word = reader.ReadWord()) != null)
+      {
+        words.Add(word);
+      }
+      Moves = words.ToArray();
     }
+  }
 }

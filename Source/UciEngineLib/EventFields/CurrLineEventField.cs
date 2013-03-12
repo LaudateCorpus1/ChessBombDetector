@@ -1,13 +1,18 @@
 ﻿using System;
 using System.IO;
+using ChessBombDetector.Utils;
 
 namespace ChessBombDetector.EventFields
 {
-    public class CurrLineEventField : EventField
+    public class CurrLineEventField : VariationEventField
     {
-        public override void ReadFromStream(StringReader reader)
-        {
-            throw new NotImplementedException();
+
+      public int CpuNumber { get; private set; }
+
+      public override void ReadFromStream(StringReader reader)
+      {
+          CpuNumber = int.Parse(reader.ReadWord());
+          base.ReadFromStream(reader);
         }
     }
 }
