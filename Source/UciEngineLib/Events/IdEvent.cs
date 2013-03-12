@@ -9,17 +9,12 @@ namespace ChessBombDetector.Events
 {
   public class IdEvent : ComplexEvent<IdEventFieldType>
   {
-    private static void RegisterFields()
-    {
-      RegisterField<StringEventField>(IdEventFieldType.Name,
-                                         (data, field) => ((IdEvent)data).Name = field);
-      RegisterField<StringEventField>(IdEventFieldType.Author,
-                                         (data, field) => ((IdEvent)data).Author = field);
-    }
-
     static IdEvent()
     {
-      RegisterFields();
+      RegisterField<StringEventField>(IdEventFieldType.Name,
+                                         (ev, field) => ((IdEvent)ev).Name = field);
+      RegisterField<StringEventField>(IdEventFieldType.Author,
+                                         (ev, field) => ((IdEvent)ev).Author = field);
     }
 
     public StringEventField Name { get; private set; }
