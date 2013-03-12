@@ -61,8 +61,24 @@ namespace ChessBombDetector.Events
         TFieldType fieldId = EnumDescriptionToValueMapper<TFieldType>.GetValueByDescription(word);
         EventField field = CreateField(fieldId);
         field.ReadFromStream(reader);
-        _fields.Add(fieldId, field);
+        AddField(fieldId, field);
       }
+    }
+
+    private void AddField(TFieldType fieldId, EventField field)
+    {
+      EventField multiEventField;
+      if (!(field is MultiEventField && _fields.TryGetValue(fieldId, out multiEventField)))
+      {
+        _fields.Add(fieldId, field);
+        return;
+      }
+      // TODO: typed exception
+      if (field.GetType() != multiEventField.GetType())
+      {
+        throw new Exception("Multi field event type mismatch");
+      }
+      ((MultiEventField)multiEventField).AddField((MultiEventField)field);
     }
 
     public ComplexEvent(EventType type) : base(type) { }

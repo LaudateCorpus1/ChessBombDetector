@@ -9,14 +9,12 @@ namespace ChessBombDetector.Events
 {
   public class OptionEvent : ComplexEvent<OptionEventFieldType>
   {
-    private readonly ICollection<WordEventField> _varFields = new List<WordEventField>();
-
     public WordEventField NameField { get; private set; }
     public OptionTypeEventField TypeField { get; private set; }
     public WordEventField DefaultField { get; private set; }
     public IntegerEventField MinField { get; private set; }
     public IntegerEventField MaxField { get; private set; }
-    public ICollection<WordEventField> VarFields { get { return _varFields; } }
+    public MultiEventField<WordEventField> VarField { get; private set; }
 
     public OptionEvent()
       : base(EventType.Option)
@@ -35,8 +33,8 @@ namespace ChessBombDetector.Events
                                          (ev, field) => ((OptionEvent)ev).MinField = field);
       RegisterField<IntegerEventField>(OptionEventFieldType.Max,
                                          (ev, field) => ((OptionEvent)ev).MaxField = field);
-      RegisterField<WordEventField>(OptionEventFieldType.Var,
-                                         (ev, field) => ((OptionEvent)ev).VarFields.Add(field));
+      RegisterField<MultiEventField<WordEventField>>(OptionEventFieldType.Var,
+                                         (ev, field) => ((OptionEvent)ev).VarField = ((OptionEvent)ev).VarField + field);
     }
 
   }
