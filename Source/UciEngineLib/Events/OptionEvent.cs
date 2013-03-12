@@ -12,7 +12,7 @@ namespace ChessBombDetector.Events
     private readonly ICollection<WordEventField> _varFields = new List<WordEventField>();
 
     public WordEventField NameField { get; private set; }
-    public WordEventField TypeField { get; private set; }
+    public OptionTypeEventField TypeField { get; private set; }
     public WordEventField DefaultField { get; private set; }
     public IntegerEventField MinField { get; private set; }
     public IntegerEventField MaxField { get; private set; }
@@ -27,7 +27,7 @@ namespace ChessBombDetector.Events
     {
       RegisterField<WordEventField>(OptionEventFieldType.Name,
                                          (ev, field) => ((OptionEvent)ev).NameField = field);
-      RegisterField<WordEventField>(OptionEventFieldType.Type,
+      RegisterField<OptionTypeEventField>(OptionEventFieldType.Type,
                                          (ev, field) => ((OptionEvent)ev).TypeField = field);
       RegisterField<WordEventField>(OptionEventFieldType.Default,
                                          (ev, field) => ((OptionEvent)ev).DefaultField = field);
