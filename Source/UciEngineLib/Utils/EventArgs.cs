@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBombDetector.Utils
+namespace UciEngineLib.Utils
 {
     public class EventArgs<T>
     {

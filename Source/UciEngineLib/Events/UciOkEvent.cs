@@ -1,4 +1,4 @@
-﻿namespace ChessBombDetector.Events
+﻿namespace UciEngineLib.Events
 {
   public class UciOkEvent : Event
   {

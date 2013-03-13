@@ -7,8 +7,8 @@
     <ProjectGuid>{846C7789-EE14-4991-AB88-EF599B7F5BCF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChessBombDetector</RootNamespace>
-    <AssemblyName>ChessBombDetector</AssemblyName>
+    <RootNamespace>UciEngineLib</RootNamespace>
+    <AssemblyName>UciEngineLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBombDetector.Utils
+namespace UciEngineLib.Utils
 {
     static class EnumExtension
     {
