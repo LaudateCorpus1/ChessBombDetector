@@ -47,7 +47,6 @@
     <Compile Include="EngineEventParser.cs" />
     <Compile Include="EventFields\CurrLineEventField.cs" />
     <Compile Include="EventFields\MultiEventField.cs" />
-    <Compile Include="EventFields\OptionType.cs" />
     <Compile Include="EventFields\OptionTypeEventField.cs" />
     <Compile Include="Events\ReadyOkEvent.cs" />
     <Compile Include="Events\UciOkEvent.cs" />
