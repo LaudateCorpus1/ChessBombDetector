@@ -34,7 +34,7 @@ namespace ChessBombDetector.Events
       RegisterField<IntegerEventField>(OptionEventFieldType.Max,
                                          (ev, field) => ((OptionEvent)ev).MaxField = field);
       RegisterField<MultiEventField<WordEventField>>(OptionEventFieldType.Var,
-                                         (ev, field) => ((OptionEvent)ev).VarField = ((OptionEvent)ev).VarField + field);
+                                         (ev, field) => ((OptionEvent)ev).VarField += field);
     }
 
   }
