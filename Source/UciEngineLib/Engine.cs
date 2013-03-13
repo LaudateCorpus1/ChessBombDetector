@@ -14,6 +14,9 @@ namespace ChessBombDetector
   public class Engine : IEngine, IDisposable
   {
 
+    private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType); 
+    
     private readonly StreamReader _reader;
 
     private readonly StreamWriter _writer;
@@ -60,7 +63,14 @@ namespace ChessBombDetector
       string line;
       while ((line = _reader.ReadLine()) != null)
       {
-        _eventDispatcher.HandleEvent(this, _eventParser.ParseEvent(line));
+        try
+        {
+          _eventDispatcher.HandleEvent(this, _eventParser.ParseEvent(line));
+        }
+        catch (Exception e)
+        {
+          log.ErrorFormat("Error handling event '{0}': {1}", line, e);  
+        }
       }
 
     }
