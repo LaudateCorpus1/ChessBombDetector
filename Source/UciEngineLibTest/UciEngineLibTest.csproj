@@ -50,8 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EngineTest.cs" />
     <Compile Include="EventParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="StringReaderExtensionTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +65,15 @@
       <Project>{846c7789-ee14-4991-ab88-ef599b7f5bcf}</Project>
       <Name>UciEngineLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EngineEvents.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
