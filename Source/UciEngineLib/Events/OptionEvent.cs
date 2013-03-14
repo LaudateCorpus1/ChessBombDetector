@@ -9,12 +9,11 @@ using UciEngineLib.EventFields;
 
 namespace UciEngineLib.Events
 {
-  public class OptionEvent: Event
+  public class OptionEvent : Event
   {
-    // private static Regex Regex = new Regex("name (?<name>.*) type (?<type>/w+)( min (?<min>/d+))?( max (?<max>/d+))?( default (?<default>.*))?( var (?<var>.*))*");
-    private static Regex Regex = new Regex("name (?<name>.*?) type (?<type>.*?)");
-    
-    public WordEventField NameField { get; private set; }
+    private static Regex Regex = new Regex(@"name (?<name>.*) type (?<type>\w+)( min (?<min>\d+))?( max (?<max>\d+))?( default (?<default>\w+))?( var (?<var>\w+))*");
+
+    public StringEventField NameField { get; private set; }
     public OptionTypeEventField TypeField { get; private set; }
     public WordEventField DefaultField { get; private set; }
     public IntegerEventField MinField { get; private set; }
@@ -26,41 +25,42 @@ namespace UciEngineLib.Events
     {
     }
 
+    public static TField ReadFieldFromRegexGroup<TField>(Match match, String groupName, bool mandatory = false) where TField : EventField, new()
+    {
+      Group group = match.Groups[groupName];
+      if (mandatory && !group.Success)
+        throw new InvalidDataException(String.Format("Field {0} not found", groupName));
+      if (!group.Success)
+        return null;
+      TField field = new TField();
+      if (!(field is MultiEventField))
+      {
+        field.ReadFromStream(new StringReader(group.Value));
+      }
+      else
+      {
+        foreach (Capture capture in group.Captures)
+        {
+          field.ReadFromStream(new StringReader(capture.Value));
+        }
+      }
+      return field;
+    }
+
     public override void ReadFromStream(StringReader reader)
     {
       string str = reader.ReadToEnd();
       Match match = Regex.Match(str);
       if (!match.Success)
         throw new InvalidDataException(String.Format("Option event format mismatch: {0}", str));
-      NameField.ReadFromRegexGroup(match, "name", true);
-      TypeField.ReadFromRegexGroup(match, "type", true);
-      MinField.ReadFromRegexGroup(match, "min");
-      MaxField.ReadFromRegexGroup(match, "max");
-      DefaultField.ReadFromRegexGroup(match, "default");
-      VarField.ReadFromRegexGroup(match, "var");
+      NameField = ReadFieldFromRegexGroup<StringEventField>(match, "name", true);
+      TypeField = ReadFieldFromRegexGroup<OptionTypeEventField>(match, "type", true);
+      MinField = ReadFieldFromRegexGroup<IntegerEventField>(match, "min");
+      MaxField = ReadFieldFromRegexGroup<IntegerEventField>(match, "max");
+      DefaultField = ReadFieldFromRegexGroup<WordEventField>(match, "default");
+      VarField = ReadFieldFromRegexGroup<MultiEventField<WordEventField>>(match, "var");
     }
 
-  }
-
-  static class EventFieldExtension
-  {
-    public static void ReadFromRegexGroup(this EventField field, Match match, String groupName, bool mandatory = false)
-    {
-      Group group = match.Groups[groupName];
-      if (mandatory && !group.Success)
-        throw new InvalidDataException(String.Format("Field {0} not found", groupName));
-      if (!group.Success)
-        return;
-      if (!(field is MultiEventField))
-      {
-        field.ReadFromStream(new StringReader(group.Value));
-        return;
-      }
-      foreach (Capture capture in group.Captures)
-      {
-        field.ReadFromStream(new StringReader(capture.Value));
-      }
-    }
   }
 
 }
