@@ -5,11 +5,11 @@ namespace UciEngineLib.EventFields
 {
     public class IntegerEventField: EventField
   {
-    public int Value { get; private set; }
+    public long Value { get; private set; }
 
     public override void ReadFromStream(StringReader reader)
     {
-        Value = int.Parse(reader.ReadWord());
+      Value = long.Parse(reader.ReadWord());
     }
   }
 }

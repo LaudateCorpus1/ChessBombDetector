@@ -39,6 +39,8 @@ namespace UciEngineLib.Events
         (ev, field) => ((InfoEvent)ev).Refutation = field);
       RegisterField<CurrLineEventField>(InfoEventFieldType.CurrLine,
         (ev, field) => ((InfoEvent)ev).CurrLine = field);
+      RegisterField<WordEventField>(InfoEventFieldType.Idle,
+        (ev, field) => ((InfoEvent)ev).Idle = field);
     }
 
     public IntegerEventField Depth { get; private set; }
@@ -57,6 +59,7 @@ namespace UciEngineLib.Events
     public StringEventField String { get; private set; }
     public VariationEventField Refutation { get; private set; }
     public CurrLineEventField CurrLine { get; private set; }
+    public WordEventField Idle { get; private set; }
 
     public InfoEvent() : base(EventType.Info) { }
 

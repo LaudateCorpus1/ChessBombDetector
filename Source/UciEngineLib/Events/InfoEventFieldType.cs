@@ -40,16 +40,19 @@ namespace UciEngineLib.Events
         [Description("tbhits")]
         TbHits,
 
-        [Description("sbhits")]
+        [Description("cpuload")]
         CpuLoad,
 
         [Description("string")]
         String,
 
-        [Description("Refutation")]
+        [Description("refutation")]
         Refutation,
 
         [Description("currline")]
-        CurrLine
+        CurrLine,
+
+        [Description("idle")]
+        Idle
     }
 }

@@ -106,5 +106,18 @@ namespace UciEngineLibTest
       Assert.AreEqual("c3b4", ev.Pv.Moves[5]);
       Assert.AreEqual("d6b4", ev.Pv.Moves[6]);
     }
+
+    [TestMethod]
+    public void TestParseEventInf2()
+    {
+      InfoEvent ev = ParseEvent<InfoEvent>(EventType.Info, "info time 1000 nodes 3404452 nps 3404000 tbhits 0 hashfull 26 cpuload 721 idle 358M");
+      Assert.AreEqual(1000, ev.Time.Value);
+      Assert.AreEqual(3404452, ev.Nodes.Value);
+      Assert.AreEqual(3404000, ev.Nps.Value);
+      Assert.AreEqual(0, ev.TbHits.Value);
+      Assert.AreEqual(26, ev.HashFull.Value);
+      Assert.AreEqual(721, ev.CpuLoad.Value);
+      Assert.AreEqual("358M", ev.Idle.Value);
+    }
   }
 }
