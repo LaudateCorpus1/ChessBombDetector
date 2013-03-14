@@ -36,12 +36,7 @@ namespace UciEngineLib
 
     static Engine()
     {
-      RegisterEventType<IdEvent>(EventType.Id,
-                                 (sender, ev) =>
-                                 {
-                                   if (((Engine)sender).IdEvent != null)
-                                     ((Engine)sender).IdEvent(sender, ev);
-                                 });
+      RegisterEventType<IdEvent>(EventType.Id, (sender, ev) => ((Engine)sender).IdEvent(sender, ev));
       RegisterEventType<UciOkEvent>(EventType.UciOk, (sender, ev) => ((Engine)sender).UciOkEvent(sender, ev));
       RegisterEventType<ReadyOkEvent>(EventType.ReadyOk, (sender, ev) => ((Engine)sender).ReadyOkEvent(sender, ev));
       RegisterEventType<BestMoveEvent>(EventType.BestMove, (sender, ev) => ((Engine)sender).BestMoveEvent(sender, ev));
@@ -106,14 +101,14 @@ namespace UciEngineLib
       _writer.WriteLine("quit");
     }
 
-    public event EventHandler<EventArgs<IdEvent>> IdEvent;
-    public event EventHandler<EventArgs<UciOkEvent>> UciOkEvent;
-    public event EventHandler<EventArgs<ReadyOkEvent>> ReadyOkEvent;
-    public event EventHandler<EventArgs<BestMoveEvent>> BestMoveEvent;
-    public event EventHandler<EventArgs<CopyProtectionEvent>> CopyProtectionEvent;
-    public event EventHandler<EventArgs<RegistrationEvent>> RegistrationEvent;
-    public event EventHandler<EventArgs<InfoEvent>> InfoEvent;
-    public event EventHandler<EventArgs<OptionEvent>> OptionEvent;
+    public event EventHandler<EventArgs<IdEvent>> IdEvent = delegate { };
+    public event EventHandler<EventArgs<UciOkEvent>> UciOkEvent = delegate { };
+    public event EventHandler<EventArgs<ReadyOkEvent>> ReadyOkEvent = delegate { };
+    public event EventHandler<EventArgs<BestMoveEvent>> BestMoveEvent = delegate { };
+    public event EventHandler<EventArgs<CopyProtectionEvent>> CopyProtectionEvent = delegate { };
+    public event EventHandler<EventArgs<RegistrationEvent>> RegistrationEvent = delegate { };
+    public event EventHandler<EventArgs<InfoEvent>> InfoEvent = delegate { };
+    public event EventHandler<EventArgs<OptionEvent>> OptionEvent = delegate { };
 
     public void WaitForEventProcessor()
     {
