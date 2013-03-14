@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
     public enum OptionEventFieldType
     {

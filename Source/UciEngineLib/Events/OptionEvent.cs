@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessBombDetector.EventFields;
+using UciEngineLib.EventFields;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
   public class OptionEvent : ComplexEvent<OptionEventFieldType>
   {

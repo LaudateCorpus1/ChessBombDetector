@@ -6,17 +6,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessBombDetector.Events;
-using ChessBombDetector.Utils;
+using UciEngineLib.Events;
+using UciEngineLib.Utils;
 
-namespace ChessBombDetector
+namespace UciEngineLib
 {
   public class Engine : IEngine, IDisposable
   {
 
     private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType); 
-    
+        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
     private readonly StreamReader _reader;
 
     private readonly StreamWriter _writer;
@@ -36,7 +36,12 @@ namespace ChessBombDetector
 
     static Engine()
     {
-      RegisterEventType<IdEvent>(EventType.Id, (sender, ev) => ((Engine)sender).IdEvent(sender, ev));
+      RegisterEventType<IdEvent>(EventType.Id,
+                                 (sender, ev) =>
+                                 {
+                                   if (((Engine)sender).IdEvent != null)
+                                     ((Engine)sender).IdEvent(sender, ev);
+                                 });
       RegisterEventType<UciOkEvent>(EventType.UciOk, (sender, ev) => ((Engine)sender).UciOkEvent(sender, ev));
       RegisterEventType<ReadyOkEvent>(EventType.ReadyOk, (sender, ev) => ((Engine)sender).ReadyOkEvent(sender, ev));
       RegisterEventType<BestMoveEvent>(EventType.BestMove, (sender, ev) => ((Engine)sender).BestMoveEvent(sender, ev));
@@ -69,7 +74,7 @@ namespace ChessBombDetector
         }
         catch (Exception e)
         {
-          log.ErrorFormat("Error handling event '{0}': {1}", line, e);  
+          log.ErrorFormat("Error handling event '{0}': {1}", line, e);
         }
       }
 
@@ -110,9 +115,14 @@ namespace ChessBombDetector
     public event EventHandler<EventArgs<InfoEvent>> InfoEvent;
     public event EventHandler<EventArgs<OptionEvent>> OptionEvent;
 
-    public void Dispose()
+    public void WaitForEventProcessor()
     {
       _eventProcessorTask.Wait();
+    }
+
+    public void Dispose()
+    {
+      WaitForEventProcessor();
     }
   }
 }

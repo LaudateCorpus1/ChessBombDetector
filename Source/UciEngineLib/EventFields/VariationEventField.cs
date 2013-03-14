@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ChessBombDetector.Utils;
+using UciEngineLib.Utils;
 
-namespace ChessBombDetector.EventFields
+namespace UciEngineLib.EventFields
 {
   public class VariationEventField : EventField
   {

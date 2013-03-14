@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ChessBombDetector.EventFields
+namespace UciEngineLib.EventFields
 {
     public abstract class EventField
     {

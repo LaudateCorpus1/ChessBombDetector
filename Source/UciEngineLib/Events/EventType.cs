@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
     public enum EventType
     {

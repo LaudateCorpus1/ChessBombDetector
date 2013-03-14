@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessBombDetector.Events;
-using ChessBombDetector.Utils;
+using UciEngineLib.Events;
+using UciEngineLib.Utils;
 
-namespace ChessBombDetector
+namespace UciEngineLib
 {
   class EngineEventParser
   {

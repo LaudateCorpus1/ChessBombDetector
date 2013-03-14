@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessBombDetector.Utils;
+using UciEngineLib.Utils;
 
-namespace ChessBombDetector.EventFields
+namespace UciEngineLib.EventFields
 {
   public class OptionTypeEventField : EventField
   {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
   // TODO: Implement
   public class CopyProtectionEvent : Event

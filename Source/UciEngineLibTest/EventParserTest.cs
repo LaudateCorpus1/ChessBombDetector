@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using ChessBombDetector;
-using ChessBombDetector.EventFields;
-using ChessBombDetector.Events;
+using UciEngineLib;
+using UciEngineLib.EventFields;
+using UciEngineLib.Events;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UciEngineLibTest

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ChessBombDetector.EventFields;
-using ChessBombDetector.Utils;
+using UciEngineLib.EventFields;
+using UciEngineLib.Utils;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
   public class ComplexEvent<TFieldType> : Event where TFieldType : struct
   {

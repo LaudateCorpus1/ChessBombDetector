@@ -1,6 +1,6 @@
-﻿using ChessBombDetector.EventFields;
+﻿using UciEngineLib.EventFields;
 
-namespace ChessBombDetector.Events
+namespace UciEngineLib.Events
 {
   public class InfoEvent : ComplexEvent<InfoEventFieldType>
   {
