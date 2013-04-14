@@ -8,7 +8,7 @@ using UciEngineLib.Utils;
 
 namespace UciEngineLib
 {
-    interface IEngine
+    public interface IEngine
     {
         void SetPosition(EnginePositionDef position, string[] moves);
         void SetOption(string name, string value);
@@ -23,5 +23,6 @@ namespace UciEngineLib
         event EventHandler<EventArgs<RegistrationEvent>> RegistrationEvent;
         event EventHandler<EventArgs<InfoEvent>> InfoEvent;
         event EventHandler<EventArgs<OptionEvent>> OptionEvent;
+        event EventHandler<EventArgs<Tuple<string, Exception>>> ExceptionEvent;
     }
 }
