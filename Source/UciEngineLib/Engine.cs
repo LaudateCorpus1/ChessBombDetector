@@ -24,9 +24,9 @@ namespace UciEngineLib
 
         private readonly Task _eventProcessorTask;
 
-        private static EngineEventParser _eventParser = new EngineEventParser();
+        private static readonly EngineEventParser _eventParser = new EngineEventParser();
 
-        private static EngineEventDispatcher _eventDispatcher =
+        private static readonly EngineEventDispatcher _eventDispatcher =
                 new EngineEventDispatcher();
 
         private static void RegisterEventType<TEventType>(EventType eventType, Action<object, TEventType> eventHandler) where TEventType : Event, new()
