@@ -58,6 +58,10 @@ namespace UciEngineLib.Events
       string word;
       while ((word = reader.ReadWord()) != null)
       {
+        if (word.Equals(String.Empty))
+        {
+          continue;
+        }
         TFieldType fieldId = EnumDescriptionToValueMapper<TFieldType>.GetValueByDescription(word);
         EventField field = CreateField(fieldId);
         field.ReadFromStream(reader);
