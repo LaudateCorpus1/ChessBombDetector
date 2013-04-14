@@ -52,6 +52,7 @@ namespace UciEngineController
       {
       }
       _engine.Run();
+      _engine.SetOption("Threads", ConfigurationManager.AppSettings["EngineThreadCount"]);
     }
 
     private void GoButton_Click(object sender, EventArgs e)
