@@ -12,7 +12,7 @@ namespace UciEngineLib
 {
   class EngineEventParser
   {
-    private Dictionary<EventType, Func<Event>> _eventFactoryRegistry =
+    private readonly Dictionary<EventType, Func<Event>> _eventFactoryRegistry =
             new Dictionary<EventType, Func<Event>>();
 
     public void RegisterEventType<TEventType>(EventType eventType) where TEventType : Event, new()
