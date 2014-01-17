@@ -23,8 +23,8 @@ namespace UciEngineLibTest
         {
             int errorCount = 0;
             Stream stream = CreateStreamFromString(Resource.EngineEvents);
-            StreamReader reader = new StreamReader(stream);
-            using (Engine engine = new Engine(reader, null))
+            var reader = new StreamReader(stream);
+            using (var engine = new Engine(reader, null))
             {
                 engine.ExceptionEvent += (sender, args) => errorCount++;
                 engine.Run();
