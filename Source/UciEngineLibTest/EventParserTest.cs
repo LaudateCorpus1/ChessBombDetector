@@ -1,31 +1,29 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UciEngineLib;
 using UciEngineLib.EventFields;
 using UciEngineLib.Events;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UciEngineLibTest
 {
   [TestClass]
   public class EventParserTest
   {
-    
-    private static TEventType ParseEvent<TEventType>(EventType eventType, string line) where TEventType: Event, new()
+    private static TEventType ParseEvent<TEventType>(EventType eventType, string line)
+      where TEventType : Event, new()
     {
-      EngineEventParser eventParser = new EngineEventParser();
+      var eventParser = new EngineEventParser();
       eventParser.RegisterEventType<TEventType>(eventType);
       Event ev = eventParser.ParseEvent(line);
       Assert.AreEqual(ev.Type, eventType);
-      Assert.IsInstanceOfType(ev, typeof(TEventType));
+      Assert.IsInstanceOfType(ev, typeof (TEventType));
       return (TEventType) ev;
-
     }
-    
+
     [TestMethod]
     public void TestParseEventInfoString()
     {
-      InfoEvent ev = ParseEvent<InfoEvent>(EventType.Info, "info string 128 MB Hash");
+      var ev = ParseEvent<InfoEvent>(EventType.Info, "info string 128 MB Hash");
       Assert.AreEqual("128 MB Hash", ev.String.Value);
       Assert.AreEqual(ev.Fields().Count(), 1);
     }
@@ -45,7 +43,7 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventReadyIdName()
     {
-      IdEvent ev = ParseEvent<IdEvent>(EventType.Id, "id name Houdini 3a Pro w32");
+      var ev = ParseEvent<IdEvent>(EventType.Id, "id name Houdini 3a Pro w32");
       Assert.AreEqual("Houdini 3a Pro w32", ev.Name.Value);
       Assert.AreEqual(ev.Fields().Count(), 1);
     }
@@ -53,7 +51,7 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventReadyIdAuthor()
     {
-      IdEvent ev = ParseEvent<IdEvent>(EventType.Id, "id author Robert Houdart");
+      var ev = ParseEvent<IdEvent>(EventType.Id, "id author Robert Houdart");
       Assert.AreEqual("Robert Houdart", ev.Author.Value);
       Assert.AreEqual(ev.Fields().Count(), 1);
     }
@@ -61,7 +59,8 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventOption()
     {
-      OptionEvent ev = ParseEvent<OptionEvent>(EventType.Option, "option name Style type combo default Normal var Solid var Normal var Risky");
+      var ev = ParseEvent<OptionEvent>(EventType.Option,
+        "option name Style type combo default Normal var Solid var Normal var Risky");
       Assert.AreEqual("Style", ev.NameField.Value);
       Assert.IsTrue(OptionTypeEventField.OptionType.Combo == ev.TypeField.Value);
       Assert.AreEqual("Normal", ev.DefaultField.Value);
@@ -76,7 +75,7 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventOption2()
     {
-      OptionEvent ev = ParseEvent<OptionEvent>(EventType.Option, "option name Tactical Mode type check default false");
+      var ev = ParseEvent<OptionEvent>(EventType.Option, "option name Tactical Mode type check default false");
       Assert.AreEqual("Tactical Mode", ev.NameField.Value);
       Assert.IsTrue(OptionTypeEventField.OptionType.Check == ev.TypeField.Value);
       Assert.AreEqual("false", ev.DefaultField.Value);
@@ -86,7 +85,8 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventInfo()
     {
-      InfoEvent ev = ParseEvent<InfoEvent>(EventType.Info, "info multipv 1 depth 4 seldepth 16 score cp -13 time 7 nodes 13957 nps 1993000 tbhits 0 hashfull 0 pv f8d8 b3c2 h3f5 c2e4 b5b4 c3b4 d6b4");
+      var ev = ParseEvent<InfoEvent>(EventType.Info,
+        "info multipv 1 depth 4 seldepth 16 score cp -13 time 7 nodes 13957 nps 1993000 tbhits 0 hashfull 0 pv f8d8 b3c2 h3f5 c2e4 b5b4 c3b4 d6b4");
       Assert.AreEqual(1, ev.MultiPv.Value);
       Assert.AreEqual(4, ev.Depth.Value);
       Assert.AreEqual(16, ev.SelDepth.Value);
@@ -110,7 +110,8 @@ namespace UciEngineLibTest
     [TestMethod]
     public void TestParseEventInf2()
     {
-      InfoEvent ev = ParseEvent<InfoEvent>(EventType.Info, "info time 1000 nodes 3404452 nps 3404000 tbhits 0 hashfull 26 cpuload 721 idle 358M");
+      var ev = ParseEvent<InfoEvent>(EventType.Info,
+        "info time 1000 nodes 3404452 nps 3404000 tbhits 0 hashfull 26 cpuload 721 idle 358M");
       Assert.AreEqual(1000, ev.Time.Value);
       Assert.AreEqual(3404452, ev.Nodes.Value);
       Assert.AreEqual(3404000, ev.Nps.Value);
